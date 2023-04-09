@@ -16,6 +16,7 @@ function App() {
   return (
     <div>
       <Header show={show} />
+
       {cart && <Cart />}
       <Data />
     </div>

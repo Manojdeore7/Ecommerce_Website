@@ -1,4 +1,4 @@
-import ListItom from "./LisItom";
+import ListItom from "./ListItom";
 
 const productsArr = [
   {
@@ -36,7 +36,7 @@ const productsArr = [
 
 function Data() {
   return (
-    <div>
+    <div className="row">
       {productsArr.map((e) => {
         return <ListItom title={e.title} price={e.price} image={e.imageUrl} />;
       })}

@@ -1,19 +1,10 @@
 .Header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
+  padding: 20px;
   background-color: black;
+
+  position: fixed;
+  z-index: 10;
+  width: 105%;
+  font-size: 1.5rem;
   color: white;
-}
-.list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.list div {
-  padding: 10px;
-}
-a {
-  cursor: pointer;
 }

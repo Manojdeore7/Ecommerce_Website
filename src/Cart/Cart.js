@@ -1,70 +1,46 @@
 import Item from "./Itom";
+import "./Cart.css";
+import { useContext } from "react";
+import CartContext from "../store/Cart-Context";
+function Cart(props) {
+  let cartC = useContext(CartContext);
+  let productsArr = cartC.items;
+  let totalAmount = cartC.totalAmount;
 
-function Cart() {
-  const productsArr = [
-    {
-      title: "Colors",
+  function fun() {
+    props.hide();
+  }
 
-      price: 100,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    },
-
-    {
-      title: "Black and white Colors",
-
-      price: 50,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    },
-
-    {
-      title: "Yellow and Black Colors",
-
-      price: 70,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    },
-
-    {
-      title: "Blue Color",
-
-      price: 100,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-    },
-  ];
   return (
-    <div
-      className="container"
-      style={{
-        width: "50%",
-        position: "fixed",
-        zIndex: "10",
-        backgroundColor: "aqua",
-      }}
-    >
+    <div className="container cart">
       <div className="row">
-        <div
-          className="col-12"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <h1>Cart</h1>
-          <button className="btn">X</button>
+        <div className="col-10 head">Cart</div>
+        <div className="col-2">
+          <button className="btn btn-danger" onClick={fun}>
+            X
+          </button>
         </div>
       </div>
+
+      <table className="table  table-striped table-hover">
+        <thead className="table-dark">
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quntity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productsArr.map((e) => {
+            return (
+              <Item price={e.price} title={e.title} id={e.id} key={e.id}></Item>
+            );
+          })}
+        </tbody>
+      </table>
       <div className="row">
-        <div className="col-4">Item </div>
-        <div className="col-4">Price</div>
-        <div className="col-4">Quantity</div>
+        <div className="col-12">Total Amount:{totalAmount}</div>
       </div>
-      {productsArr.map((e) => {
-        return <Item price={e.price} title={e.title}></Item>;
-      })}
     </div>
   );
 }

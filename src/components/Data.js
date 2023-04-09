@@ -1,5 +1,5 @@
 import ListItom from "./ListItom";
-
+import "./Data.css";
 const productsArr = [
   {
     title: "Colors",
@@ -36,10 +36,22 @@ const productsArr = [
 
 function Data() {
   return (
-    <div className="row">
-      {productsArr.map((e) => {
-        return <ListItom title={e.title} price={e.price} image={e.imageUrl} />;
-      })}
+    <div className="row data">
+      <div className="col-12 music">Music</div>
+      <div className="row row-cols-2 ">
+        {productsArr.map((e, i) => {
+          return (
+            <ListItom
+              key={i}
+              id={i}
+              title={e.title}
+              price={e.price}
+              image={e.imageUrl}
+              inedx={i}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.cont img {
+  width: 25%;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}
+.cont {
+  font-family: inherit;
+  margin-top: 0px;
+  top: 90px;
+  position: relative;
+  font-size: 1.5rem;
+}

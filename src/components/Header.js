@@ -10,13 +10,13 @@ function Header(props) {
   return (
     <div className="row Header">
       <div className="col-1 offset-4">
-        <a href="http://localhost:3001/">Home</a>
+        <a>Home</a>
       </div>
       <div className="col-1">
-        <a>Store</a>
+        <a href="http://localhost:3002/">Store</a>
       </div>
       <div className="col-1">
-        <a href="http://localhost:3001/Footer">About</a>
+        <a href="http://localhost:3002/About">About</a>
       </div>
 
       <div className="col-auto offset-4">

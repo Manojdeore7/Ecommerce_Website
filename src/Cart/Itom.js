@@ -3,10 +3,8 @@ import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
 function Item(props) {
   let cartc = useContext(CartContext);
-  function funn(e) {
-    let idm = e.target.id;
-
-    cartc.removeItems(idm);
+  function funn() {
+    cartc.removeItems(props.id);
   }
   return (
     <tr>
@@ -14,7 +12,7 @@ function Item(props) {
       <td>{props.price}</td>
       <td>
         <input defaultValue="1"></input>
-        <button className="btn btn-danger" onClick={funn} id={props.id}>
+        <button className="btn btn-danger" onClick={funn}>
           Remove
         </button>
       </td>

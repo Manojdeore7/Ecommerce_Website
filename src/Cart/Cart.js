@@ -22,7 +22,7 @@ function Cart(props) {
         </div>
       </div>
 
-      <table className="table  table-striped table-hover">
+      <table className="table   table-hover">
         <thead className="table-dark">
           <tr>
             <th>Item</th>

@@ -2,13 +2,14 @@ function Footer() {
   let styleC = {
     backgroundColor: "aqua",
     fontSize: "2rem",
-    padding: "20px",
+    padding: "10px",
     textAlign: "center",
     color: "white",
     fontFamily: "inherit",
-    position: "relative",
-    top: "35px",
+    position: "fixed",
+    bottom: "0px",
     alignItems: "center",
+    width: "110%",
   };
   return (
     <div className="row" style={styleC}>

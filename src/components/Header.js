@@ -11,22 +11,27 @@ function Header(props) {
   return (
     <div className="row Header ">
       <div className="col-1 offset-4 ">
-        <Link className="ram" to="http://localhost:3001/Home">
+        <Link className="ram" to="http://localhost:3000/Home">
           Home
         </Link>
       </div>
       <div className="col-1">
-        <Link className="ram" to="http://localhost:3001/">
+        <Link className="ram" to="http://localhost:3000/">
           Store
         </Link>
       </div>
-      <div className="col-1">
-        <Link className="ram" to="http://localhost:3001/About">
+      <div div className="col-1">
+        <Link className="ram" to="http://localhost:3000/About">
           About
         </Link>
       </div>
+      <div div className="col-1">
+        <Link className="ram" to="http://localhost:3000/Contact">
+          Contact us
+        </Link>
+      </div>
 
-      <div className="col-auto offset-4">
+      <div className="col-auto offset-3">
         <button onClick={fun} className="btn btn-primary">
           Cart {totalNumberOfItems}
         </button>

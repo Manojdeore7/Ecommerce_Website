@@ -6,11 +6,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ContactUs from "./components/ContactUs";
+import DetailPage from "./components/DetailPage";
 let router = createBrowserRouter([
   { path: "", element: [<Store />] },
   { path: "/About", element: [<Header />, <About />, <Footer />] },
   { path: "/Home", element: [<Header />, <Home />, <Footer />] },
   { path: "/Contact", element: [<Header />, <ContactUs />, <Footer />] },
+  { path: "/Details/:PagId", element: <DetailPage /> },
 ]);
 function App() {
   return <RouterProvider router={router}></RouterProvider>;

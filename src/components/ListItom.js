@@ -1,7 +1,9 @@
 import "./ListItom.css";
 import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
+import { NavLink } from "react-router-dom";
 function ListItom(props) {
+  let linked = `http://localhost:3000/Details/:${props.id}`;
   let cartC = useContext(CartContext);
   function fun() {
     cartC.addItems({
@@ -15,7 +17,10 @@ function ListItom(props) {
   return (
     <div className="col Itom">
       <h1>{props.title}</h1>
-      <img src={props.image} />
+      <NavLink to={linked}>
+        <img src={props.image} />
+      </NavLink>
+
       <div>
         <h3 className="offset-3">{`$${props.price}`}</h3>
         <button className="btn btn-primary offset-3" onClick={fun}>

@@ -10,7 +10,7 @@ import DetailPage from "./components/DetailPage";
 import AuthPage from "./Auth/AuthPage";
 import { useContext } from "react";
 import { AuthContext } from "./store/Cart-Context";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom";
 
 function App() {
   let context = useContext(AuthContext);
@@ -19,10 +19,11 @@ function App() {
     <>
       <Header />
       <Switch>
-        <Route path="/" exact>
-          <Store />
-        </Route>
-
+        {login && (
+          <Route path="/" exact>
+            <Store />
+          </Route>
+        )}
         {login && (
           <Route path="/About">
             <About />
@@ -44,12 +45,17 @@ function App() {
           </Route>
         )}
         {login && (
+          <Route path="/Auth">
+            <Redirect to="/" />
+          </Route>
+        )}
+        {login && (
           <Route path="/Details/:PagId">
             <DetailPage />
           </Route>
         )}
         <Route path="*">
-          <Redirect path="/Auth" />
+          <Redirect to="/Auth" />
         </Route>
       </Switch>
       <Footer />

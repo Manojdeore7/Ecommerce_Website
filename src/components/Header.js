@@ -13,41 +13,45 @@ function Header(props) {
   }
   return (
     <div className="row Header ">
-      {login && (
-        <div className="col-1 offset-3 ">
+      <div className="col-1  ">
+        {login && (
           <Link className="ram" to="/Home">
             Home
           </Link>
-        </div>
-      )}
-      {login && (
-        <div className="col-1">
+        )}
+      </div>
+
+      <div className="col-1">
+        {login && (
           <Link className="ram" to="/">
             Store
           </Link>
-        </div>
-      )}
-      {login && (
-        <div div className="col-1">
+        )}
+      </div>
+
+      <div div className="col-1">
+        {login && (
           <Link className="ram" to="/About">
             About
           </Link>
-        </div>
-      )}
-      {login && (
-        <div div className="col-1">
+        )}
+      </div>
+
+      <div div className="col-1">
+        {login && (
           <Link className="ram" to="/Contact">
             Contact us
           </Link>
-        </div>
-      )}
-      {!login && (
-        <div div className="col-1">
+        )}
+      </div>
+
+      <div div className="col-1">
+        {!login && (
           <Link className="ram" to="/Auth">
             Login
           </Link>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="col-auto offset-3">
         <button onClick={fun} className="btn btn-primary">

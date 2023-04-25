@@ -27,7 +27,7 @@ function Store() {
     top: "35px",
   };
   return (
-    <CartProvider>
+    <>
       {cart && <Cart hide={hide} />}
       <Header show={show} />
       <div className="row" style={styleC}>
@@ -37,7 +37,7 @@ function Store() {
         <Data />
       </div>
       <Footer />
-    </CartProvider>
+    </>
   );
 }
 

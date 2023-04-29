@@ -15,6 +15,9 @@ import { Redirect } from "react-router-dom";
 function App() {
   let context = useContext(AuthContext);
   let login = context.isLoggedIn;
+  setTimeout(() => {
+    context.logout();
+  }, 1000 * 60 * 5);
   return (
     <>
       <Header />

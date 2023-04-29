@@ -11,6 +11,9 @@ function Header(props) {
   function fun() {
     props.show();
   }
+  function fun1() {
+    context.logout();
+  }
   return (
     <div className="row Header ">
       <div className="col-1  ">
@@ -50,6 +53,13 @@ function Header(props) {
           <Link className="ram" to="/Auth">
             Login
           </Link>
+        )}
+      </div>
+      <div div className="col-1 ram">
+        {login && (
+          <button className="btn btn-primary" onClick={fun1}>
+            logout
+          </button>
         )}
       </div>
 

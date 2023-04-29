@@ -22,6 +22,7 @@ function fun(state, action) {
     let totalAmountM = arr.reduce((sum, curr) => {
       return sum + curr.price;
     }, 0);
+
     return {
       items: arr,
       totalAmount: totalAmountM,
@@ -45,6 +46,7 @@ function CartProvider(props) {
     addItems: addToCartHandler,
     removeItems: removeFromCartHandler,
   };
+
   //auth
 
   let [Token, setToken] = useState(null);
@@ -54,7 +56,6 @@ function CartProvider(props) {
   };
   let loggedOutHandeler = () => {
     setToken(null);
-    localStorage.clear();
   };
 
   let context = {

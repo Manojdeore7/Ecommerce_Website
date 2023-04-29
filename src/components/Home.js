@@ -1,8 +1,9 @@
 import "./Home.css";
-
-function Home() {
+import Cart from "../Cart/Cart";
+function Home(props) {
   return (
     <div className="container home">
+      {props.cart && <Cart hide={props.hide} />}
       <h1>TOUR</h1>
       <table className="table table-dark">
         <tbody>

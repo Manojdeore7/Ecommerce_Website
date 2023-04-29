@@ -14,6 +14,7 @@ const AuthPage = () => {
     let enterEmail = emaill.current.value;
     let enterPassword = passwordl.current.value;
     let url;
+
     if (true) {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD75n7Mrcm1q4ndl92CJNLqr61eLavjvhI";
@@ -45,6 +46,7 @@ const AuthPage = () => {
       })
       .then((data) => {
         context.login(data.idToken);
+
         let getToken = data.idToken;
         localStorage.setItem("Token", JSON.stringify(getToken));
       })

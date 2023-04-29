@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import "./ContactUs.css";
-function ContactUs() {
+import Cart from "../Cart/Cart";
+function ContactUs(props) {
   let nameRef = useRef("");
   let emailRef = useRef("");
   let phoneRef = useRef("");
@@ -24,6 +25,7 @@ function ContactUs() {
   }
   return (
     <div className="container contact">
+      {props.cart && <Cart hide={props.hide} />}
       <form onSubmit={submitHandler}>
         <div>
           <label htmlFor="Name">Name</label>

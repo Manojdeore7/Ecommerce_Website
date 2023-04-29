@@ -1,7 +1,9 @@
 import "./About.css";
-function About() {
+import Cart from "../Cart/Cart";
+function About(props) {
   return (
     <div className="container cont">
+      {props.cart && <Cart hide={props.hide} />}
       <h1>About</h1>
       <img
         src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png"

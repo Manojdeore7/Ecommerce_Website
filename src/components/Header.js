@@ -8,12 +8,15 @@ function Header(props) {
   let context = useContext(AuthContext);
   let login = context.isLoggedIn;
   let totalNumberOfItems = cacrtC.items.length;
+
   function fun() {
     props.show();
   }
   function fun1() {
     context.logout();
+    localStorage.clear();
   }
+
   return (
     <div className="row Header ">
       <div className="col-1  ">
@@ -48,26 +51,27 @@ function Header(props) {
         )}
       </div>
 
-      <div div className="col-1">
+      <div div className="col-1 offset-5">
         {!login && (
           <Link className="ram" to="/Auth">
             Login
           </Link>
         )}
       </div>
-      <div div className="col-1 ram">
+      <div div className="col-1  ram">
         {login && (
           <button className="btn btn-primary" onClick={fun1}>
             logout
           </button>
         )}
       </div>
-
-      <div className="col-auto offset-3">
-        <button onClick={fun} className="btn btn-primary">
-          Cart {totalNumberOfItems}
-        </button>
-      </div>
+      {login && (
+        <div className="col-auto ">
+          <button onClick={fun} className="btn btn-primary">
+            Cart {totalNumberOfItems}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

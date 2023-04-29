@@ -11,7 +11,7 @@ import Home from "./components/Home";
 import ContactUs from "./components/ContactUs";
 import DetailPage from "./components/DetailPage";
 import AuthPage from "./Auth/AuthPage";
-import CartContext, { AuthContext } from "./store/Cart-Context";
+import { AuthContext } from "./store/Cart-Context";
 import { Redirect } from "react-router-dom";
 
 function App() {

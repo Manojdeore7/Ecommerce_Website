@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { AuthContext } from "../store/Cart-Context";
 import { useContext } from "react";
 import classes from "./AuthForm.module.css";

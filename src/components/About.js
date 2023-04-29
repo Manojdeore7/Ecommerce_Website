@@ -3,7 +3,10 @@ function About() {
   return (
     <div className="container cont">
       <h1>About</h1>
-      <img src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png" />
+      <img
+        src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png"
+        alt=""
+      />
       <p>
         Veniam magna in voluptate consectetur pariatur esse ex dolore. Quis
         eiusmod ex aliqua fugiat mollit mollit sit magna. Laborum reprehenderit

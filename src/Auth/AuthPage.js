@@ -7,7 +7,6 @@ const AuthPage = () => {
   let context = useContext(AuthContext);
   let emaill = useRef("");
   let passwordl = useRef("");
-  const [isLogin, setIsLogin] = useState(true);
 
   function submitHandler(e) {
     e.preventDefault();
@@ -15,7 +14,7 @@ const AuthPage = () => {
     let enterEmail = emaill.current.value;
     let enterPassword = passwordl.current.value;
     let url;
-    if (isLogin) {
+    if (true) {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD75n7Mrcm1q4ndl92CJNLqr61eLavjvhI";
     } else {

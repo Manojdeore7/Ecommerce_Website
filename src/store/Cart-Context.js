@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react from "react";
 let CartContext = react.createContext({
   items: [],
   totalAmount: 0,

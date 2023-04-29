@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
 function Item(props) {

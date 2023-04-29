@@ -17,13 +17,13 @@ function Footer() {
         The Generics
       </div>
       <div className="col-auto offset-4">
-        <a href="#">facebook</a>
+        <a href="facebook.com">facebook</a>
       </div>
       <div className="col-auto">
-        <a href="#">YouTube</a>
+        <a href="facebook.com">YouTube</a>
       </div>
       <div className="col-auto">
-        <a href="#">InstaGram</a>
+        <a href="facebook.com">InstaGram</a>
       </div>
     </div>
   );

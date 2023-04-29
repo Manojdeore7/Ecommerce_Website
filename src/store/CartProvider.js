@@ -17,7 +17,7 @@ function fun(state, action) {
     };
   } else if (action.type === "REMOVE") {
     let arr = state.items.filter((e) => {
-      return e.id != action.idm;
+      return e.id !== action.idm;
     });
     let totalAmountM = arr.reduce((sum, curr) => {
       return sum + curr.price;

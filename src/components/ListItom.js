@@ -18,7 +18,7 @@ function ListItom(props) {
     <div className="col Itom">
       <h1>{props.title}</h1>
       <NavLink to={linked}>
-        <img src={props.image} />
+        <img src={props.image} alt="" />
       </NavLink>
 
       <div>

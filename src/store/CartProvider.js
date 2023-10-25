@@ -50,6 +50,7 @@ function CartProvider(props) {
   //auth
 
   let [Token, setToken] = useState(null);
+  let [signin, setSignin] = useState(false);
   let userLoggedIn = !!Token;
   let loggedInHandeler = (token) => {
     setToken(token);
@@ -57,10 +58,14 @@ function CartProvider(props) {
   let loggedOutHandeler = () => {
     setToken(null);
   };
-
+  let checking = () => {
+    setSignin(!signin);
+  };
   let context = {
     token: Token,
     isLoggedIn: userLoggedIn,
+    signIn: signin,
+    check: checking,
     login: loggedInHandeler,
     logout: loggedOutHandeler,
   };

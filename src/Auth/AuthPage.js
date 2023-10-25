@@ -7,7 +7,7 @@ const AuthPage = () => {
   let context = useContext(AuthContext);
   let emaill = useRef("");
   let passwordl = useRef("");
-
+  let signIn = context.signIn;
   function submitHandler(e) {
     e.preventDefault();
 
@@ -15,7 +15,7 @@ const AuthPage = () => {
     let enterPassword = passwordl.current.value;
     let url;
 
-    if (true) {
+    if (signIn) {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD75n7Mrcm1q4ndl92CJNLqr61eLavjvhI";
     } else {
@@ -57,16 +57,24 @@ const AuthPage = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>login</h1>
+      {signIn && <h1>SignIn</h1>}
+      {!signIn && <h1>SignUp</h1>}
+
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emaill} />
+          <label htmlFor="email">Enter Email</label>
+          <input type="email" id="email" ref={emaill} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input type="password" id="password" required ref={passwordl} />
+          <label htmlFor="password">Enter Password</label>
+          <input type="password" id="password" ref={passwordl} />
         </div>
+        {!signIn && (
+          <div className={classes.control}>
+            <label htmlFor="password">Confirmed Password</label>
+            <input type="password" id="password" />
+          </div>
+        )}
         <div className={classes.actions}>
           <button>submit</button>
         </div>

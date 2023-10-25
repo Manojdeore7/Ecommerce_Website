@@ -13,17 +13,36 @@ function Footer() {
   };
   return (
     <div className="row" style={styleC}>
-      <div className="col-auto offset-2" style={{ fontSize: "4rem" }}>
+      <div className="col-auto offset-1" style={{ fontSize: "4rem" }}>
         The Generics
       </div>
       <div className="col-auto offset-4">
-        <a href="facebook.com">facebook</a>
+        <a
+          style={{ textDecoration: "none", color: "black" }}
+          href="https://facebook.com"
+          title="Link for Go on Facebook"
+        >
+          facebook
+        </a>
       </div>
       <div className="col-auto">
-        <a href="facebook.com">YouTube</a>
+        <a
+          style={{ textDecoration: "none", color: "black" }}
+          href="https://YouTube.com"
+          title="Link for Go on YouTube"
+        >
+          YouTube
+        </a>
       </div>
       <div className="col-auto">
-        <a href="facebook.com">InstaGram</a>
+        <a
+          style={{ textDecoration: "none", color: "black" }}
+          href="https://InstaGram.com"
+          title="Link for Go on Instagram"
+          target="_parent"
+        >
+          InstaGram
+        </a>
       </div>
     </div>
   );

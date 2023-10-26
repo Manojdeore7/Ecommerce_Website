@@ -1,6 +1,7 @@
 import react from "react";
 let CartContext = react.createContext({
   items: [],
+  array: [],
   totalAmount: 0,
   addItems: () => {},
   removeItems: () => {},
@@ -8,6 +9,9 @@ let CartContext = react.createContext({
 
 let AuthContext = react.createContext({
   token: "",
+  email: "",
+
+  checkE: (email) => {},
   isLoggedIn: false,
   signIn: false,
   check: () => {},

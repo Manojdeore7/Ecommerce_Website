@@ -8,6 +8,7 @@ const AuthPage = () => {
   let emaill = useRef("");
   let passwordl = useRef("");
   let signIn = context.signIn;
+
   function submitHandler(e) {
     e.preventDefault();
 
@@ -45,8 +46,9 @@ const AuthPage = () => {
         }
       })
       .then((data) => {
+        console.log(data);
         context.login(data.idToken);
-
+        context.checkE(data.email);
         let getToken = data.idToken;
         localStorage.setItem("Token", JSON.stringify(getToken));
       })

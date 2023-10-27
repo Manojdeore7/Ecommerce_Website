@@ -73,7 +73,7 @@ function CartProvider(props) {
       setArray(a);
     }
     getdata();
-  }, [Token]);
+  }, [Token, email]);
   let cart = {
     items: cartState.items,
     array: array,

@@ -13,7 +13,7 @@ function ListItom(props) {
     let key = "";
     for (let i = 0; i < cartC.array.length; i++) {
       console.log(cartC.array[i].email + "|" + context.email);
-      if (cartC.array[i].email == context.email) {
+      if (cartC.array[i].email === context.email) {
         v = true;
         key = cartC.array[i].key;
 
@@ -22,7 +22,7 @@ function ListItom(props) {
     }
 
     if (!v) {
-      let res = await fetch(
+      await fetch(
         `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json`,
         {
           method: "POST",
@@ -37,7 +37,7 @@ function ListItom(props) {
         }
       );
     } else {
-      let res = await fetch(
+      await fetch(
         `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}.json`,
         {
           method: "PUT",

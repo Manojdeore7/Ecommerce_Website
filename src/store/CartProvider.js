@@ -53,7 +53,7 @@ function CartProvider(props) {
 
     for (let i = 0; i < a.length; i++) {
       console.log(email);
-      if (a[i].email == email) {
+      if (a[i].email === email) {
         dispatch({
           type: "GetData",
           items: a[i].Items,

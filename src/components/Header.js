@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
 import { AuthContext } from "../store/Cart-Context";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ function Header(props) {
   let login = context.isLoggedIn;
   let totalNumberOfItems = cacrtC.items.length;
   let signIn = context.signIn;
-  let checking = context.check;
+
   function fun() {
     props.show();
   }

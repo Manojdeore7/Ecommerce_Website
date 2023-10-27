@@ -9,13 +9,6 @@ function ListItom(props) {
   let context = useContext(AuthContext);
   let funn = cartC.addItems;
   async function fun() {
-    funn({
-      id: props.id,
-      price: props.price,
-      title: props.title,
-      image: props.image,
-    });
-
     let v = false;
     let key = "";
     for (let i = 0; i < cartC.array.length; i++) {
@@ -59,6 +52,12 @@ function ListItom(props) {
         }
       );
     }
+    funn({
+      id: props.id,
+      price: props.price,
+      title: props.title,
+      image: props.image,
+    });
   }
   return (
     <div className="col Itom">

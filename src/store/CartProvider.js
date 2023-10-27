@@ -73,7 +73,7 @@ function CartProvider(props) {
   }
   useEffect(() => {
     getdata();
-  }, [Token]);
+  }, [Token, array]);
   let cart = {
     items: cartState.items,
     array: array,

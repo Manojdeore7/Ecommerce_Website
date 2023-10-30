@@ -52,7 +52,7 @@ function CartProvider(props) {
 
     if (c == 0) {
       arr.push(item);
-      let resp = await fetch(
+      await fetch(
         `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items.json`,
         {
           method: "POST",
@@ -67,7 +67,7 @@ function CartProvider(props) {
     }
 
     let totalAmountM = totalAmount + item.price;
-    let resp = await fetch(
+    await fetch(
       `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}.json`,
       {
         method: "PATCH",
@@ -82,14 +82,44 @@ function CartProvider(props) {
     setArray(arr);
     setTotalAmount(totalAmountM);
   }
-  function removeFromCartHandler(id) {
-    let arr = items.filter((e) => {
+  async function removeFromCartHandler(id) {
+    let arr = array.filter((e) => {
       return e.id !== id;
     });
     let totalAmountM = arr.reduce((sum, curr) => {
-      return sum + curr.price;
+      return sum + curr.price * curr.quantity;
     }, 0);
-    setItems(arr);
+    let resp1 = await fetch(
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items.json`
+    );
+
+    let data = await resp1.json();
+    let key1 = "";
+    for (let kx in data) {
+      if (data[kx].item.id === id) {
+        key1 = kx;
+
+        break;
+      }
+    }
+    await fetch(
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items/${key1}.json`,
+      { method: "DELETE" }
+    );
+
+    await fetch(
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          totalAmount: totalAmountM,
+        }),
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }
+    );
+    setArray(arr);
     setTotalAmount(totalAmountM);
   }
   async function getdata() {
@@ -97,7 +127,7 @@ function CartProvider(props) {
       "https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json"
     );
     let data = await resp.json();
-    console.log(Id);
+
     for (let k in data) {
       if (data[k].uid == Id) {
         setKey(k);
@@ -107,23 +137,15 @@ function CartProvider(props) {
     }
 
     let x = [];
-    console.log(key);
 
-    console.log(data);
     for (let y in data[key].items) {
       x.push(data[key].items[y].item);
     }
 
-    console.log(x);
     setArray(x);
 
     setTotalAmount(data[key].totalAmount);
   }
-  useEffect(() => {
-    if (userLoggedIn) {
-      getdata();
-    }
-  }, [Token]);
 
   let cart = {
     items: items,
@@ -140,6 +162,7 @@ function CartProvider(props) {
   let loggedInHandeler = (token, localId) => {
     setId(localId);
     setToken(token);
+    getdata();
   };
   let loggedOutHandeler = () => {
     setToken(null);
@@ -152,7 +175,7 @@ function CartProvider(props) {
   };
   let context = {
     token: Token,
-    key,
+    key: key,
     Id: Id,
     email: email,
     checkE: checkEmail,

@@ -47,7 +47,7 @@ const AuthPage = () => {
       })
       .then(async (data) => {
         if (!signIn) {
-          let res = await fetch(
+          await fetch(
             "https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json",
             {
               method: "POST",

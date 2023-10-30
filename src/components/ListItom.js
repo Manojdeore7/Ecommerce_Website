@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 function ListItom(props) {
   let linked = `http://localhost:3000/Details/:${props.id}`;
   let cartC = useContext(CartContext);
-  let context = useContext(AuthContext);
 
   async function fun() {
     cartC.addItems({

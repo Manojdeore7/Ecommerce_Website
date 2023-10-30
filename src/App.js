@@ -19,9 +19,7 @@ function App() {
   let token = localStorage.getItem("Token") || null;
   context.login(token);
   let login = context.isLoggedIn;
-  setTimeout(() => {
-    context.logout();
-  }, 1000 * 60 * 5);
+
   let [cart, setCart] = useState(false);
   let show = () => {
     setCart(true);

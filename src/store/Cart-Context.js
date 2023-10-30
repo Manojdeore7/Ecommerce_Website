@@ -10,7 +10,8 @@ let CartContext = react.createContext({
 let AuthContext = react.createContext({
   token: "",
   email: "",
-
+  Id: "",
+  key: "",
   checkE: (email) => {},
   isLoggedIn: false,
   signIn: false,

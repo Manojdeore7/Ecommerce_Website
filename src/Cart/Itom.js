@@ -10,7 +10,9 @@ function Item(props) {
       <td>{props.title} </td>
       <td>{props.price}</td>
       <td>
-        <input defaultValue="1"></input>
+        <b>{props.quantity}</b>
+      </td>
+      <td>
         <button className="btn btn-danger" onClick={funn}>
           Remove
         </button>

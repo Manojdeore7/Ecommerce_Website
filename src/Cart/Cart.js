@@ -4,7 +4,7 @@ import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
 function Cart(props) {
   let cartC = useContext(CartContext);
-  let productsArr = cartC.items;
+  let productsArr = cartC.array;
   let totalAmount = cartC.totalAmount;
 
   function fun() {
@@ -28,12 +28,19 @@ function Cart(props) {
             <th>Item</th>
             <th>Price</th>
             <th>Quntity</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>
           {productsArr.map((e) => {
             return (
-              <Item price={e.price} title={e.title} id={e.id} key={e.id}></Item>
+              <Item
+                price={e.price}
+                title={e.title}
+                id={e.id}
+                key={e.id}
+                quantity={e.quantity}
+              ></Item>
             );
           })}
         </tbody>

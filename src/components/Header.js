@@ -7,7 +7,11 @@ function Header(props) {
   let cacrtC = useContext(CartContext);
   let context = useContext(AuthContext);
   let login = context.isLoggedIn;
-  let totalNumberOfItems = cacrtC.items.length;
+  if (cacrtC.items) {
+    var totalNumberOfItems = cacrtC.array.length;
+  } else {
+    var totalNumberOfItems = 0;
+  }
   let signIn = context.signIn;
 
   function fun() {

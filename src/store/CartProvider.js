@@ -1,83 +1,134 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import CartContext from "./Cart-Context";
 import { AuthContext } from "./Cart-Context";
 import { useState } from "react";
-const defaultState = {
-  items: [],
-  totalAmount: 0,
-};
 
-function fun(state, action) {
-  if (action.type === "ADD") {
-    let arr = state.items.concat(action.item);
-    let totalAmountM = state.totalAmount + action.item.price;
-    return {
-      items: arr,
-      totalAmount: totalAmountM,
-    };
-  } else if (action.type === "REMOVE") {
-    let arr = state.items.filter((e) => {
-      return e.id !== action.idm;
+function CartProvider(props) {
+  let [items, setItems] = useState([]);
+  let [totalAmount, setTotalAmount] = useState(0);
+  let [array, setArray] = useState([]);
+  let [email, setEmail] = useState("");
+  let [Token, setToken] = useState(null);
+  let [Id, setId] = useState("");
+  let [key, setKey] = useState("");
+  let userLoggedIn = !!Token;
+  async function addToCartHandler(item) {
+    let c = 0;
+    let arr = array;
+    let q = item.quantity;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === item.id) {
+        arr[i].quantity = arr[i].quantity + 1;
+        q = arr[i].quantity;
+        c++;
+        let resp1 = await fetch(
+          `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items.json`
+        );
+        let data = await resp1.json();
+        let key1 = "";
+        for (let kx in data) {
+          if (data[kx].item.id === item.id) {
+            key1 = kx;
+
+            break;
+          }
+        }
+
+        let resp = await fetch(
+          `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items/${key1}/item.json`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({
+              quantity: q,
+            }),
+            headers: {
+              "Content-Type": "aplication/json",
+            },
+          }
+        );
+        break;
+      }
+    }
+
+    if (c == 0) {
+      arr.push(item);
+      let resp = await fetch(
+        `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items.json`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            item: item,
+          }),
+          headers: {
+            "Content-Type": "aplication/json",
+          },
+        }
+      );
+    }
+
+    let totalAmountM = totalAmount + item.price;
+    let resp = await fetch(
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          totalAmount: totalAmountM,
+        }),
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }
+    );
+    setArray(arr);
+    setTotalAmount(totalAmountM);
+  }
+  function removeFromCartHandler(id) {
+    let arr = items.filter((e) => {
+      return e.id !== id;
     });
     let totalAmountM = arr.reduce((sum, curr) => {
       return sum + curr.price;
     }, 0);
-
-    return {
-      items: arr,
-      totalAmount: totalAmountM,
-    };
-  } else if (action.type === "GetData") {
-    return {
-      items: action.items,
-      totalAmount: action.total,
-    };
+    setItems(arr);
+    setTotalAmount(totalAmountM);
   }
-  return defaultState;
-}
+  async function getdata() {
+    let resp = await fetch(
+      "https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json"
+    );
+    let data = await resp.json();
+    console.log(Id);
+    for (let k in data) {
+      if (data[k].uid == Id) {
+        setKey(k);
 
-function CartProvider(props) {
-  const [cartState, dispatch] = useReducer(fun, defaultState);
-  let [array, setArray] = useState([]);
-  let [email, setEmail] = useState("");
-  let [Token, setToken] = useState(null);
+        break;
+      }
+    }
 
-  function addToCartHandler(item) {
-    dispatch({ type: "ADD", item: item });
-  }
-  function removeFromCartHandler(id) {
-    dispatch({ type: "REMOVE", idm: id });
+    let x = [];
+    console.log(key);
+
+    console.log(data);
+    for (let y in data[key].items) {
+      x.push(data[key].items[y].item);
+    }
+
+    console.log(x);
+    setArray(x);
+
+    setTotalAmount(data[key].totalAmount);
   }
   useEffect(() => {
-    async function getdata() {
-      let resp = await fetch(
-        "https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json"
-      );
-      let data = await resp.json();
-      let a = [];
-      for (let key in data) {
-        a.push({ key, ...data[key] });
-      }
-
-      for (let i = 0; i < a.length; i++) {
-        console.log(email);
-        if (a[i].email === email) {
-          dispatch({
-            type: "GetData",
-            items: a[i].Items,
-            total: a[i].totalAmount,
-          });
-        }
-      }
-      console.log(email);
-      setArray(a);
+    if (userLoggedIn) {
+      getdata();
     }
-    getdata();
-  }, [Token, email]);
+  }, [Token]);
+
   let cart = {
-    items: cartState.items,
+    items: items,
     array: array,
-    totalAmount: cartState.totalAmount,
+    totalAmount: totalAmount,
     addItems: addToCartHandler,
     removeItems: removeFromCartHandler,
   };
@@ -86,8 +137,8 @@ function CartProvider(props) {
 
   let [signin, setSignin] = useState(false);
 
-  let userLoggedIn = !!Token;
-  let loggedInHandeler = (token) => {
+  let loggedInHandeler = (token, localId) => {
+    setId(localId);
     setToken(token);
   };
   let loggedOutHandeler = () => {
@@ -101,7 +152,8 @@ function CartProvider(props) {
   };
   let context = {
     token: Token,
-
+    key,
+    Id: Id,
     email: email,
     checkE: checkEmail,
     isLoggedIn: userLoggedIn,

@@ -45,9 +45,25 @@ const AuthPage = () => {
           });
         }
       })
-      .then((data) => {
-        console.log(data);
-        context.login(data.idToken);
+      .then(async (data) => {
+        if (!signIn) {
+          let res = await fetch(
+            "https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData.json",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                email: enterEmail,
+                uid: data.localId,
+                totalAmount: 0,
+              }),
+              headers: {
+                "Content-Type": "aplication/json",
+              },
+            }
+          );
+        }
+
+        context.login(data.idToken, data.localId);
         context.checkE(data.email);
         let getToken = data.idToken;
         localStorage.setItem("Token", JSON.stringify(getToken));

@@ -3,7 +3,7 @@
   padding-right: 50px;
   background-color: black;
   height: 70px;
-  position: relative;
+  position: fixed;
   z-index: 10;
   width: 105%;
   font-size: 1.5rem;

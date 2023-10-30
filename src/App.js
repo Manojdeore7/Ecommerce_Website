@@ -72,6 +72,11 @@ function App() {
           <Redirect to="/Auth" />
         </Route>
       </Switch>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Footer />
     </>
   );

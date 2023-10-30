@@ -1,7 +1,6 @@
 import "./ListItom.css";
 import { useContext } from "react";
 import CartContext from "../store/Cart-Context";
-import { AuthContext } from "../store/Cart-Context";
 import { NavLink } from "react-router-dom";
 function ListItom(props) {
   let linked = `http://localhost:3000/Details/:${props.id}`;

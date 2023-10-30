@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import CartContext from "./Cart-Context";
 import { AuthContext } from "./Cart-Context";
 import { useState } from "react";
 
 function CartProvider(props) {
-  let [items, setItems] = useState([]);
   let [totalAmount, setTotalAmount] = useState(0);
   let [array, setArray] = useState([]);
   let [email, setEmail] = useState("");
@@ -34,7 +32,7 @@ function CartProvider(props) {
           }
         }
 
-        let resp = await fetch(
+        await fetch(
           `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items/${key1}/item.json`,
           {
             method: "PATCH",
@@ -50,7 +48,7 @@ function CartProvider(props) {
       }
     }
 
-    if (c == 0) {
+    if (c === 0) {
       arr.push(item);
       await fetch(
         `https://authenticate-app-70c08-default-rtdb.firebaseio.com/EcomData/${key}/items.json`,
@@ -129,7 +127,7 @@ function CartProvider(props) {
     let data = await resp.json();
 
     for (let k in data) {
-      if (data[k].uid == Id) {
+      if (data[k].uid === Id) {
         setKey(k);
 
         break;
@@ -148,7 +146,6 @@ function CartProvider(props) {
   }
 
   let cart = {
-    items: items,
     array: array,
     totalAmount: totalAmount,
     addItems: addToCartHandler,
